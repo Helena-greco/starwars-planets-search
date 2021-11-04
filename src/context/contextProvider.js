@@ -6,33 +6,51 @@ import fetchAPI from '../services/fetchAPI';
 /** Ref: Consultei no repositório da Bea Ribeiro sobre a requisição API e useEffect */
 function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
-  const [filters, setFilter] = useState({ filterByName: { name: '' } });
+  const [filteredPlanets, setFilteredPlanets] = useState(planets);
+  const [planetName, setPlanetName] = useState('');
+  const [filter, setFilter] = useState({
+    filters: {
+      filterByName: {
+        name: '',
+      },
+    },
+  });
 
   async function fetchingAPI() {
     const results = await fetchAPI();
     setPlanets(results);
   }
 
-  function handleFilterChange({ target }) {
-    if (target.value === '') {
-      setPlanets(planets);
-    } else {
-      const filterPlanets = planets.filter((planet) => planet.name.toLowerCase()
-        .includes(target.value.toLowerCase()));
-      setFilter({
-        ...filters,
-        filterByName: { name: target.value },
-      });
-      setPlanets(filterPlanets);
-    }
-  }
-
   useEffect(() => {
     fetchingAPI();
-  }, []);
+  }, []); // componentDidMount
+
+  useEffect(() => {
+    setFilter({
+      filters: {
+        filterByName: {
+          name: planetName,
+        },
+      },
+    });
+
+    const filterPlanets = planets.filter((planet) => (planet.name.toLowerCase()
+      .includes(planetName.toLowerCase())));
+    setFilteredPlanets(filterPlanets);
+  }, [planets, planetName]);
+  // a renderização do useEffect só precisará ser “reexecutado” caso as dependências mudem.
+
+  const contextValue = {
+    planets,
+    filter,
+    setFilter,
+    setPlanetName,
+    filteredPlanets,
+    fetchingAPI,
+  };
 
   return (
-    <Context.Provider value={ { planets, fetchingAPI, handleFilterChange } }>
+    <Context.Provider value={ contextValue }>
       {children}
     </Context.Provider>
   );

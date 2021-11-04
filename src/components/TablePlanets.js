@@ -3,7 +3,7 @@ import Context from '../context/context';
 import '../style.css';
 
 function TablePlanets() {
-  const { planets } = useContext(Context);
+  const { filteredPlanets } = useContext(Context);
 
   return (
     <table className="table">
@@ -26,7 +26,7 @@ function TablePlanets() {
       </thead>
       <tbody>
         {
-          planets.map((line, index) => (
+          filteredPlanets.map((line, index) => (
             <tr key={ index }>
               <td>{ line.name }</td>
               <td>{ line.rotation_period }</td>

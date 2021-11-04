@@ -1,11 +1,12 @@
 import React, { useContext } from 'react';
 import Context from '../context/context';
+import '../style.css';
 
 function TablePlanets() {
   const { planets } = useContext(Context);
 
   return (
-    <table border="1">
+    <table className="table">
       <thead>
         <tr>
           <th>Name</th>
@@ -36,10 +37,18 @@ function TablePlanets() {
               <td>{ line.terrain }</td>
               <td>{ line.surface_water }</td>
               <td>{ line.population }</td>
-              <td>{ line.films.map((film) => film) }</td>
+              <td>
+                { line.films.map((film, i) => (
+                  <a href={ film } key={ i }>{film}</a>
+                )) }
+              </td>
               <td>{ line.created }</td>
               <td>{ line.edited }</td>
-              <td>{ line.url }</td>
+              <td>
+                <a href={ line.url }>
+                  {line.url}
+                </a>
+              </td>
             </tr>
           ))
         }

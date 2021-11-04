@@ -6,10 +6,25 @@ import fetchAPI from '../services/fetchAPI';
 /** Ref: Consultei no repositório da Bea Ribeiro sobre a requisição API e useEffect */
 function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
+  const [filters, setFilter] = useState({ filterByName: { name: '' } });
 
   async function fetchingAPI() {
     const results = await fetchAPI();
     setPlanets(results);
+  }
+
+  function handleFilterChange({ target }) {
+    if (target.value === '') {
+      setPlanets(planets);
+    } else {
+      const filterPlanets = planets.filter((planet) => planet.name.toLowerCase()
+        .includes(target.value.toLowerCase()));
+      setFilter({
+        ...filters,
+        filterByName: { name: target.value },
+      });
+      setPlanets(filterPlanets);
+    }
   }
 
   useEffect(() => {
@@ -17,7 +32,7 @@ function Provider({ children }) {
   }, []);
 
   return (
-    <Context.Provider value={ { planets, fetchingAPI } }>
+    <Context.Provider value={ { planets, fetchingAPI, handleFilterChange } }>
       {children}
     </Context.Provider>
   );

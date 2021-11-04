@@ -1,4 +1,4 @@
-@font-face {font-family: "Star Jedi"; src: url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.eot"); src: url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.eot?#iefix") format("embedded-opentype"), url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.woff2") format("woff2"), url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.woff") format("woff"), url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.ttf") format("truetype"), url("//db.onlinewebfonts.com/t/0c724f6aa457310440cf8949c615cbd7.svg#Star Jedi") format("svg"); }
+@import url("//db.onlinewebfonts.com/c/0c724f6aa457310440cf8949c615cbd7?family=Star+Jedi");
 
 * {
   background-color: rgba(214, 213, 213, 0.781);
@@ -10,11 +10,11 @@
 }
 
 .table th {
+  background-color: black;
   border: 1px solid white;
   border-collapse: collapse;
+  color: rgb(185, 177, 177);
   padding: 5px;
-  background-color: black;
-  color: white;
 }
 
 .table td {
@@ -25,49 +25,40 @@
 
 .header {
   display: flex;
-  justify-content: center;
   font-family: 'Star Jedi';
   font-size: 1.5em;
+  justify-content: center;
 }
 
 .name-filter {
-  display: block;
-  margin: 10px auto;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  box-shadow: 1px 1px 2px #333333;
-  -moz-box-shadow: 1px 1px 2px #333333;-webkit-box-shadow: 1px 1px 2px #333333;
-  background: #000000; 
-  border:1px solid #000000;
-  width:150px;
+  background: black; 
   color: white;
+  border:1px solid black;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #333;
+  display: block;
   font-weight: 700;
+  margin: 10px auto;
+  width:150px;
 }
 
 .filter {
-  margin: 5px;
-  padding: 3px 6px;
-  border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  box-shadow: 1px 1px 2px #333333;
-  -moz-box-shadow: 1px 1px 2px #333333;-webkit-box-shadow: 1px 1px 2px #333333;
   background: #8f8f8f; 
-  border:1px solid #000000;
-  width:150px;
+  border:1px solid black;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px #333;
+  margin: 5px;
   color: black;
   font-weight: 700;
+  padding: 3px 6px;
+  width:150px;
 }
 
 .filter-btn {
   background: black;
-  color: rgb(146, 146, 146);
-  padding: 3px 6px;
-  font-weight: 700;
   border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
   box-shadow: 1px 1px 2px #333333;
-  -moz-box-shadow: 1px 1px 2px #333333;-webkit-box-shadow: 1px 1px 2px #333333;
+  color: rgb(185, 177, 177);
+  font-weight: 700;
+  padding: 3px 6px;
 }

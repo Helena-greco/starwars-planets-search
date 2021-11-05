@@ -2,8 +2,8 @@ import React from 'react';
 import '../style.css';
 
 function FilterNumbers() {
-  const select1 = ['population', 'orbital period', 'diameter',
-    'rotation period', 'surface water'];
+  const select1 = ['population', 'orbital_period', 'diameter',
+    'rotation_period', 'surface_water'];
 
   return (
     <div>

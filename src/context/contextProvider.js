@@ -8,11 +8,6 @@ function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
   const [planetName, setPlanetName] = useState('');
   const [typeFilter, setTypeFilter] = useState([]);
-  // const [filter, setFilter] = useState({
-  //   filterByName: {
-  //     name: '',
-  //   },
-  // });
 
   async function fetchingAPI() {
     const results = await fetchAPI();
@@ -25,8 +20,6 @@ function Provider({ children }) {
 
   const contextValue = {
     planets,
-    // filter,
-    // setFilter,
     planetName,
     setPlanetName,
     fetchingAPI,

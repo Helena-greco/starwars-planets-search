@@ -1,20 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import Context from './context';
+import StarWarsContext from './StarWarsContext';
 import fetchAPI from '../services/fetchAPI';
 
 /** Ref: Consultei no repositório da Bea Ribeiro sobre a requisição API e useEffect */
 function Provider({ children }) {
   const [planets, setPlanets] = useState([]);
-  const [filteredPlanets, setFilteredPlanets] = useState(planets);
   const [planetName, setPlanetName] = useState('');
-  const [filter, setFilter] = useState({
-    filters: {
-      filterByName: {
-        name: '',
-      },
-    },
-  });
+  const [typeFilter, setTypeFilter] = useState([]);
+  // const [filter, setFilter] = useState({
+  //   filterByName: {
+  //     name: '',
+  //   },
+  // });
 
   async function fetchingAPI() {
     const results = await fetchAPI();
@@ -25,34 +23,21 @@ function Provider({ children }) {
     fetchingAPI();
   }, []); // componentDidMount
 
-  useEffect(() => {
-    setFilter({
-      filters: {
-        filterByName: {
-          name: planetName,
-        },
-      },
-    });
-
-    const filterPlanets = planets.filter((planet) => (planet.name.toLowerCase()
-      .includes(planetName.toLowerCase())));
-    setFilteredPlanets(filterPlanets);
-  }, [planets, planetName]);
-  // a renderização do useEffect só precisará ser “reexecutado” caso as dependências mudem.
-
   const contextValue = {
     planets,
-    filter,
-    setFilter,
+    // filter,
+    // setFilter,
+    planetName,
     setPlanetName,
-    filteredPlanets,
     fetchingAPI,
+    typeFilter,
+    setTypeFilter,
   };
 
   return (
-    <Context.Provider value={ contextValue }>
+    <StarWarsContext.Provider value={ contextValue }>
       {children}
-    </Context.Provider>
+    </StarWarsContext.Provider>
   );
 }
 

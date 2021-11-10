@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import Context from '../context/context';
+import StarWarsContext from '../context/StarWarsContext';
 import '../style.css';
 
 function FilterInputs() {
-  const { setPlanetName } = useContext(Context);
+  const { setPlanetName } = useContext(StarWarsContext);
 
   function handleFilterChange({ target: { value } }) {
     setPlanetName(value);

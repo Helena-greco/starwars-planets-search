@@ -1,9 +1,49 @@
 import React, { useContext } from 'react';
-import Context from '../context/context';
+import StarWarsContext from '../context/StarWarsContext';
 import '../style.css';
 
 function TablePlanets() {
-  const { filteredPlanets } = useContext(Context);
+  const { planets, typeFilter, planetName } = useContext(StarWarsContext);
+  let filteredPlanets = planets;
+
+  function filterBySmallerThen(column, index) {
+    filteredPlanets = filteredPlanets.filter((planet) => (
+      Number(planet[column]) < typeFilter[index].numericValue
+    ));
+  }
+
+  function filterByBiggerThen(column, index) {
+    filteredPlanets = filteredPlanets.filter((planet) => (
+      Number(planet[column]) > typeFilter[index].numericValue
+    ));
+  }
+
+  function filterByEquality(column, index) {
+    filteredPlanets = filteredPlanets.filter((planet) => (
+      Number(planet[column]) === typeFilter[index].numericValue
+    ));
+  }
+
+  typeFilter.forEach((type, index) => {
+    switch (type.comparison) {
+    case 'maior que':
+      filterByBiggerThen(type.column, index);
+      break;
+    case 'menor que':
+      filterBySmallerThen(type.column, index);
+      break;
+    case 'igual a':
+      filterByEquality(type.column, index);
+      break;
+    default:
+      break;
+    }
+  });
+
+  if (planetName !== '') {
+    filteredPlanets = planets.filter((planet) => (planet.name.toLowerCase()
+      .includes(planetName.toLowerCase())));
+  }
 
   return (
     <table className="table">
